@@ -1,0 +1,147 @@
+<html>
+<head>
+<title>5.lab_session.ipynb</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #7a7e85;}
+.s1 { color: #bcbec4;}
+.s2 { color: #cf8e6d;}
+.s3 { color: #bcbec4;}
+.s4 { color: #6aab73;}
+.s5 { color: #2aacb8;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+5.lab_session.ipynb</font>
+</center></td></tr></table>
+<pre><span class="s0">#%% md 
+</span><span class="s1">Import relevant packages here. 
+</span><span class="s0">#%% 
+</span><span class="s2">import </span><span class="s1">matplotlib</span><span class="s3">.</span><span class="s1">pyplot </span><span class="s2">as </span><span class="s1">plt</span>
+<span class="s2">import </span><span class="s1">numpy </span><span class="s2">as </span><span class="s1">np</span>
+<span class="s2">import </span><span class="s1">pandas </span><span class="s2">as </span><span class="s1">pd</span>
+<span class="s0">#%% md 
+</span><span class="s1">Load the data and verify it is loaded correctly. 
+&lt;ul&gt; 
+    &lt;li&gt;Print it (head, tail, or specific rows, choose a sensible number of rows).&lt;/li&gt; 
+    &lt;li&gt;Compare it to the source file.&lt;/li&gt; 
+&lt;ul&gt; 
+</span><span class="s0">#%% 
+</span><span class="s1">data </span><span class="s3">= </span><span class="s1">pd</span><span class="s3">.</span><span class="s1">read_csv</span><span class="s3">(</span><span class="s4">'/Users/larszevenbergen/Desktop/Programming/pythonProject/cf_data.csv'</span><span class="s3">)</span>
+
+<span class="s1">print</span><span class="s3">(</span><span class="s4">&quot;First 5 rows of the dataset:&quot;</span><span class="s3">)</span>
+<span class="s1">print</span><span class="s3">(</span><span class="s1">data</span><span class="s3">.</span><span class="s1">head</span><span class="s3">())</span>
+
+<span class="s1">print</span><span class="s3">(</span><span class="s4">&quot;</span><span class="s2">\n</span><span class="s4">Last 5 rows of the dataset:&quot;</span><span class="s3">)</span>
+<span class="s1">print</span><span class="s3">(</span><span class="s1">data</span><span class="s3">.</span><span class="s1">tail</span><span class="s3">())</span>
+
+<span class="s1">print</span><span class="s3">(</span><span class="s4">&quot;</span><span class="s2">\n</span><span class="s4">Shape of the dataset:&quot;</span><span class="s3">)</span>
+<span class="s1">print</span><span class="s3">(</span><span class="s1">data</span><span class="s3">.</span><span class="s1">shape</span><span class="s3">)</span>
+
+<span class="s0">#%% md 
+</span><span class="s1">In the ensuing, you will use &lt;code&gt;numpy&lt;/code&gt;. 
+ 
+Let's create a grid for the values to plot. But first create &lt;b&gt;two arrays named &lt;code&gt;dv&lt;/code&gt; and &lt;code&gt;s&lt;/code&gt;&lt;/b&gt; using &lt;code&gt;numpy.linspace&lt;/code&gt; that hold the grid values at the relevant indices in their respective dimension of the grid. 
+ 
+Create a &lt;b&gt;grid named &lt;code&gt;a&lt;/code&gt;&lt;/b&gt; with zeros using &lt;code&gt;numpy.zeros&lt;/code&gt; in to which calculated acceleration values can be stored.&lt;br&gt; 
+&lt;br&gt; 
+Let the grid span:&lt;br&gt; 
+&lt;ul&gt; 
+    &lt;li&gt;Speed difference &lt;code&gt;dv&lt;/code&gt; [m/s] 
+        &lt;ul&gt; 
+            &lt;li&gt;From -10 till 10&lt;/li&gt; 
+            &lt;li&gt;With 41 evenly spaced values&lt;/li&gt; 
+        &lt;/ul&gt; 
+    &lt;/li&gt; 
+    &lt;li&gt;Headway &lt;code&gt;s&lt;/code&gt; [m] 
+        &lt;ul&gt; 
+            &lt;li&gt;From 0 till 200&lt;/li&gt; 
+            &lt;li&gt;With 21 evenly spaced values&lt;/li&gt; 
+        &lt;/ul&gt; 
+    &lt;/li&gt; 
+&lt;/ul&gt; 
+</span><span class="s0">#%% 
+</span><span class="s1">dv </span><span class="s3">= </span><span class="s1">np</span><span class="s3">.</span><span class="s1">linspace</span><span class="s3">(-</span><span class="s5">10</span><span class="s3">, </span><span class="s5">10</span><span class="s3">, </span><span class="s5">41</span><span class="s3">)</span>
+<span class="s1">print</span><span class="s3">(</span><span class="s4">&quot;Speed difference array (dv):&quot;</span><span class="s3">)</span>
+<span class="s1">print</span><span class="s3">(</span><span class="s1">dv</span><span class="s3">)</span>
+
+<span class="s1">s </span><span class="s3">= </span><span class="s1">np</span><span class="s3">.</span><span class="s1">linspace</span><span class="s3">(</span><span class="s5">0</span><span class="s3">, </span><span class="s5">200</span><span class="s3">, </span><span class="s5">21</span><span class="s3">)</span>
+<span class="s1">print</span><span class="s3">(</span><span class="s4">&quot;</span><span class="s2">\n</span><span class="s4">Headway array (s):&quot;</span><span class="s3">)</span>
+<span class="s1">print</span><span class="s3">(</span><span class="s1">s</span><span class="s3">)</span>
+<span class="s1">a </span><span class="s3">= </span><span class="s1">np</span><span class="s3">.</span><span class="s1">zeros</span><span class="s3">((</span><span class="s1">len</span><span class="s3">(</span><span class="s1">s</span><span class="s3">), </span><span class="s1">len</span><span class="s3">(</span><span class="s1">dv</span><span class="s3">)))</span>
+<span class="s1">print</span><span class="s3">(</span><span class="s4">&quot;</span><span class="s2">\n</span><span class="s4">Grid (a) initialized with zeros:&quot;</span><span class="s3">)</span>
+<span class="s1">print</span><span class="s3">(</span><span class="s1">a</span><span class="s3">)</span>
+
+<span class="s0">#%% md 
+</span><span class="s1">Create from the imported data 3 separate &lt;code&gt;numpy&lt;/code&gt; arrays for each column &lt;code&gt;dv&lt;/code&gt;, &lt;code&gt;s&lt;/code&gt; and &lt;code&gt;a&lt;/code&gt;. (We do this for speed reasons later.) 
+&lt;ul&gt; 
+    &lt;li&gt;Make sure to name them differently from the arrays that belong to the grid as above.&lt;/li&gt; 
+    &lt;li&gt;You can access the data of each column in a &lt;code&gt;DataFrame&lt;/code&gt; using &lt;code&gt;data.xxx&lt;/code&gt; where &lt;code&gt;xxx&lt;/code&gt; is the column name (not as a string).&lt;/li&gt; 
+    &lt;li&gt;Use the method &lt;code&gt;to_numpy()&lt;/code&gt; to convert a column to a &lt;code&gt;numpy&lt;/code&gt; array.&lt;/li&gt; 
+&lt;/ul&gt; 
+</span><span class="s0">#%% 
+</span><span class="s1">DV </span><span class="s3">= </span><span class="s1">data</span><span class="s3">[</span><span class="s4">'dv'</span><span class="s3">].</span><span class="s1">to_numpy</span><span class="s3">()</span>
+<span class="s1">S </span><span class="s3">= </span><span class="s1">data</span><span class="s3">[</span><span class="s4">'s'</span><span class="s3">].</span><span class="s1">to_numpy</span><span class="s3">()</span>
+<span class="s1">A </span><span class="s3">= </span><span class="s1">data</span><span class="s3">[</span><span class="s4">'a'</span><span class="s3">].</span><span class="s1">to_numpy</span><span class="s3">()</span>
+
+<span class="s1">print</span><span class="s3">(</span><span class="s4">&quot;DV array (Speed difference):&quot;</span><span class="s3">)</span>
+<span class="s1">print</span><span class="s3">(</span><span class="s1">DV</span><span class="s3">)</span>
+
+<span class="s1">print</span><span class="s3">(</span><span class="s4">&quot;</span><span class="s2">\n</span><span class="s4">S array (Headway):&quot;</span><span class="s3">)</span>
+<span class="s1">print</span><span class="s3">(</span><span class="s1">S</span><span class="s3">)</span>
+
+<span class="s1">print</span><span class="s3">(</span><span class="s4">&quot;</span><span class="s2">\n</span><span class="s4">A array (Acceleration):&quot;</span><span class="s3">)</span>
+<span class="s1">print</span><span class="s3">(</span><span class="s1">A</span><span class="s3">)</span>
+
+<span class="s0">#%% md 
+</span><span class="s1">Create an algorithm that calculates all the acceleration values and stores them in the grid. The algorithm is described visually in the last part of the lecture. At each grid point, it calculates a weighted mean of all measurements. The weights are given by an exponential function, based on the 'distance' between the grid point, and the measurement values of &lt;code&gt;dv&lt;/code&gt; and &lt;code&gt;s&lt;/code&gt;. To get you started, how many &lt;code&gt;for&lt;/code&gt;-loops do you need?&lt;br&gt; 
+&lt;br&gt; 
+For this you will need &lt;code&gt;math&lt;/code&gt;.&lt;br&gt; 
+Use an &lt;i&gt;upsilon&lt;/i&gt; of 1.5m/s and a &lt;i&gt;sigma&lt;/i&gt; of 30m.&lt;br&gt; 
+&lt;br&gt; 
+&lt;b&gt;Warning:&lt;/b&gt; This calculation may take some time. So: 
+&lt;ul&gt; 
+    &lt;li&gt;Print a line for each iteration of the outer-most &lt;code&gt;for&lt;/code&gt;-loop that shows you the progress.&lt;/li&gt; 
+    &lt;li&gt;Test you code by running it only on the first 50 measurements of the data.&lt;/li&gt; 
+&lt;/ul&gt; 
+</span><span class="s0">#%% 
+</span><span class="s1">upsilon </span><span class="s3">= </span><span class="s5">1.5 </span>
+<span class="s1">sigma </span><span class="s3">= </span><span class="s5">30.0 </span>
+
+
+<span class="s1">a </span><span class="s3">= </span><span class="s1">np</span><span class="s3">.</span><span class="s1">zeros</span><span class="s3">((</span><span class="s1">len</span><span class="s3">(</span><span class="s1">s</span><span class="s3">), </span><span class="s1">len</span><span class="s3">(</span><span class="s1">dv</span><span class="s3">)))</span>
+
+<span class="s2">for </span><span class="s1">i </span><span class="s2">in </span><span class="s1">range</span><span class="s3">(</span><span class="s1">len</span><span class="s3">(</span><span class="s1">s</span><span class="s3">)):</span>
+    <span class="s1">print</span><span class="s3">(</span><span class="s4">f&quot;Processing row </span><span class="s2">{</span><span class="s1">i </span><span class="s3">+ </span><span class="s5">1</span><span class="s2">}</span><span class="s4">/</span><span class="s2">{</span><span class="s1">len</span><span class="s3">(</span><span class="s1">s</span><span class="s3">)</span><span class="s2">}</span><span class="s4">&quot;</span><span class="s3">)</span>
+    <span class="s2">for </span><span class="s1">j </span><span class="s2">in </span><span class="s1">range</span><span class="s3">(</span><span class="s1">len</span><span class="s3">(</span><span class="s1">dv</span><span class="s3">)):</span>
+
+        <span class="s1">dv_grid_point </span><span class="s3">= </span><span class="s1">dv</span><span class="s3">[</span><span class="s1">j</span><span class="s3">]</span>
+        <span class="s1">s_grid_point </span><span class="s3">= </span><span class="s1">s</span><span class="s3">[</span><span class="s1">i</span><span class="s3">]</span>
+        
+        <span class="s1">weights </span><span class="s3">= </span><span class="s1">np</span><span class="s3">.</span><span class="s1">exp</span><span class="s3">(-((</span><span class="s1">DV </span><span class="s3">- </span><span class="s1">dv_grid_point</span><span class="s3">)**</span><span class="s5">2 </span><span class="s3">/ </span><span class="s1">upsilon</span><span class="s3">**</span><span class="s5">2</span><span class="s3">) - ((</span><span class="s1">S </span><span class="s3">- </span><span class="s1">s_grid_point</span><span class="s3">)**</span><span class="s5">2 </span><span class="s3">/ </span><span class="s1">sigma</span><span class="s3">**</span><span class="s5">2</span><span class="s3">))</span>
+        
+        <span class="s1">weighted_sum </span><span class="s3">= </span><span class="s1">np</span><span class="s3">.</span><span class="s1">sum</span><span class="s3">(</span><span class="s1">weights </span><span class="s3">* </span><span class="s1">A</span><span class="s3">) </span>
+        <span class="s1">weight_total </span><span class="s3">= </span><span class="s1">np</span><span class="s3">.</span><span class="s1">sum</span><span class="s3">(</span><span class="s1">weights</span><span class="s3">)</span>
+        
+
+        <span class="s1">a</span><span class="s3">[</span><span class="s1">i</span><span class="s3">, </span><span class="s1">j</span><span class="s3">] = </span><span class="s1">weighted_sum </span><span class="s3">/ </span><span class="s1">weight_total </span><span class="s2">if </span><span class="s1">weight_total </span><span class="s3">!= </span><span class="s5">0 </span><span class="s2">else </span><span class="s5">0</span>
+<span class="s0">#%% md 
+</span><span class="s1">The following code will plot the data for you. Does it make sense when considering: 
+&lt;ul&gt; 
+    &lt;li&gt;Negative (slower than leader) and positive (faster than leader) speed differences?&lt;/li&gt; 
+    &lt;li&gt;Small and large headways?&lt;/li&gt; 
+&lt;/ul&gt; 
+</span><span class="s0">#%% 
+</span><span class="s1">X</span><span class="s3">, </span><span class="s1">Y </span><span class="s3">= </span><span class="s1">np</span><span class="s3">.</span><span class="s1">meshgrid</span><span class="s3">(</span><span class="s1">dv</span><span class="s3">, </span><span class="s1">s</span><span class="s3">)</span>
+<span class="s1">axs </span><span class="s3">= </span><span class="s1">plt</span><span class="s3">.</span><span class="s1">axes</span><span class="s3">()</span>
+<span class="s1">p </span><span class="s3">= </span><span class="s1">axs</span><span class="s3">.</span><span class="s1">pcolor</span><span class="s3">(</span><span class="s1">X</span><span class="s3">, </span><span class="s1">Y</span><span class="s3">, </span><span class="s1">a</span><span class="s3">, </span><span class="s1">shading</span><span class="s3">=</span><span class="s4">'nearest'</span><span class="s3">)</span>
+<span class="s1">axs</span><span class="s3">.</span><span class="s1">set_title</span><span class="s3">(</span><span class="s4">'Acceleration [m/s/s]'</span><span class="s3">)</span>
+<span class="s1">axs</span><span class="s3">.</span><span class="s1">set_xlabel</span><span class="s3">(</span><span class="s4">'Speed difference [m/s]'</span><span class="s3">)</span>
+<span class="s1">axs</span><span class="s3">.</span><span class="s1">set_ylabel</span><span class="s3">(</span><span class="s4">'Headway [m]'</span><span class="s3">)</span>
+<span class="s1">axs</span><span class="s3">.</span><span class="s1">figure</span><span class="s3">.</span><span class="s1">colorbar</span><span class="s3">(</span><span class="s1">p</span><span class="s3">)</span><span class="s1">;</span>
+<span class="s1">axs</span><span class="s3">.</span><span class="s1">figure</span><span class="s3">.</span><span class="s1">set_size_inches</span><span class="s3">(</span><span class="s5">10</span><span class="s3">, </span><span class="s5">7</span><span class="s3">)</span></pre>
+</body>
+</html>
